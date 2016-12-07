@@ -298,6 +298,7 @@
             this.DropButton.TabIndex = 0;
             this.DropButton.Text = "DROP";
             this.DropButton.UseVisualStyleBackColor = true;
+            this.DropButton.Click += new System.EventHandler(this.DropButton_Click);
             // 
             // InvButton
             // 

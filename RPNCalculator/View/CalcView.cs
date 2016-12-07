@@ -21,6 +21,7 @@ namespace RPNCalculator
         public event EventHandler Subtraction;
         public event EventHandler Multiplication;
         public event EventHandler Division;
+        public event EventHandler Drop;
 
         public CalcView()
         {
@@ -120,6 +121,13 @@ namespace RPNCalculator
         protected virtual void OnDivision()
         {
             var eventHandler = this.Division;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnDrop()
+        {
+            var eventHandler = this.Drop;
             if (eventHandler != null)
                 eventHandler.Invoke(this, null);
         }
@@ -281,6 +289,11 @@ namespace RPNCalculator
         private void DivideButton_Click(object sender, EventArgs e)
         {
             OnDivision();
+        }
+
+        private void DropButton_Click(object sender, EventArgs e)
+        {
+            OnDrop();
         }
     }
 }

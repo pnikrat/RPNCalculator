@@ -22,6 +22,7 @@ namespace RPNCalculator.Presenter
             _calcView.Subtraction += this.Subtraction;
             _calcView.Multiplication += this.Multiplication;
             _calcView.Division += this.Division;
+            _calcView.Drop += this.Drop;
         }
 
         private void StackPush(object sender, EventArgs<String> args)
@@ -33,6 +34,16 @@ namespace RPNCalculator.Presenter
                 _calcView.SetTextCurrentNumber("");
                 StackDisplay();
             }
+        }
+
+        private bool CheckUnaryOperators()
+        {
+            if (_rpnStack.Count < 1)
+            {
+                DisplayOperatorsErrorMessage();
+                return false;
+            }
+            return true;
         }
 
         private bool CheckBinaryOperators()
@@ -109,12 +120,24 @@ namespace RPNCalculator.Presenter
             }
         }
 
+        private void Drop(object sender, EventArgs args)
+        {
+            if (CheckUnaryOperators())
+            {
+                _calcView.SetTextStatusLabel("");
+                _rpnStack.Pop();
+                StackDisplay();
+            }
+        }
+
         private void StackDisplay()
         {
             Number[] stackRepresentation = _rpnStack.ToArray();
             String[] stackDisplay = { "", "", "", "" };
             for (int i = 0; i < stackRepresentation.Length; i++)
             {
+                if (i >= 4)
+                    break;
                 stackDisplay[i] = stackRepresentation[i].ToString();
             }
             _calcView.SetStackValues(stackDisplay);
