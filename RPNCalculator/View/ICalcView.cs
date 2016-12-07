@@ -10,11 +10,9 @@ namespace RPNCalculator.View
     public interface ICalcView
     {
         void SetTextCurrentNumber(String value);
+        void SetTextStatusLabel(String value);
         void ClearStackValues();
-        void SetTextL1StackValue(String value);
-        void SetTextL2StackValue(String value);
-        void SetTextL3StackValue(String value);
-        void SetTextL4StackValue(String value);
+        void SetStackValues(String[] values);
         //CalcPresenter _presenter
         //{ set; }
 

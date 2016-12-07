@@ -16,7 +16,7 @@ namespace RPNCalculator.Model
 
         public Number(String value)
         {
-            //packing and unpacking to eliminate leading zeroes. InvariantCulture to prevent FormatException during parsing
+            //packing and unpacking to eliminate leading zeroes.
             _value = Double.Parse(value).ToString();
         }
 

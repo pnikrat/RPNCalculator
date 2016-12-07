@@ -58,15 +58,16 @@
             this.DayAddButton = new System.Windows.Forms.Button();
             this.EnterButton = new System.Windows.Forms.Button();
             this.tableLayoutStatusPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.L4StackValue = new System.Windows.Forms.Label();
+            this.CurrentNumber = new System.Windows.Forms.Label();
+            this.L1StackValue = new System.Windows.Forms.Label();
             this.L1StackLabel = new System.Windows.Forms.Label();
             this.L2StackLabel = new System.Windows.Forms.Label();
             this.L4StackLabel = new System.Windows.Forms.Label();
             this.L3StackLabel = new System.Windows.Forms.Label();
-            this.L1StackValue = new System.Windows.Forms.Label();
-            this.CurrentNumber = new System.Windows.Forms.Label();
             this.L3StackValue = new System.Windows.Forms.Label();
-            this.L4StackValue = new System.Windows.Forms.Label();
             this.L2StackValue = new System.Windows.Forms.Label();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.flowLayoutNumbers.SuspendLayout();
             this.FormTableLayoutPanel1.SuspendLayout();
             this.flowLayoutOperations.SuspendLayout();
@@ -440,6 +441,7 @@
             this.tableLayoutStatusPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutStatusPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutStatusPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutStatusPanel.Controls.Add(this.StatusLabel, 0, 1);
             this.tableLayoutStatusPanel.Controls.Add(this.L4StackValue, 1, 0);
             this.tableLayoutStatusPanel.Controls.Add(this.CurrentNumber, 0, 3);
             this.tableLayoutStatusPanel.Controls.Add(this.L1StackValue, 0, 3);
@@ -461,6 +463,45 @@
             this.tableLayoutStatusPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutStatusPanel.Size = new System.Drawing.Size(400, 326);
             this.tableLayoutStatusPanel.TabIndex = 2;
+            // 
+            // L4StackValue
+            // 
+            this.L4StackValue.AutoSize = true;
+            this.L4StackValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.L4StackValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L4StackValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
+            this.L4StackValue.Location = new System.Drawing.Point(183, 0);
+            this.L4StackValue.Name = "L4StackValue";
+            this.L4StackValue.Size = new System.Drawing.Size(174, 81);
+            this.L4StackValue.TabIndex = 7;
+            this.L4StackValue.Text = "L4DefVal";
+            this.L4StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CurrentNumber
+            // 
+            this.CurrentNumber.AutoSize = true;
+            this.CurrentNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CurrentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CurrentNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
+            this.CurrentNumber.Location = new System.Drawing.Point(3, 243);
+            this.CurrentNumber.Name = "CurrentNumber";
+            this.CurrentNumber.Size = new System.Drawing.Size(174, 83);
+            this.CurrentNumber.TabIndex = 5;
+            this.CurrentNumber.Text = "default";
+            this.CurrentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // L1StackValue
+            // 
+            this.L1StackValue.AutoSize = true;
+            this.L1StackValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.L1StackValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.L1StackValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
+            this.L1StackValue.Location = new System.Drawing.Point(183, 243);
+            this.L1StackValue.Name = "L1StackValue";
+            this.L1StackValue.Size = new System.Drawing.Size(174, 83);
+            this.L1StackValue.TabIndex = 4;
+            this.L1StackValue.Text = "L1DefVal";
+            this.L1StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // L1StackLabel
             // 
@@ -514,32 +555,6 @@
             this.L3StackLabel.Text = "L3";
             this.L3StackLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // L1StackValue
-            // 
-            this.L1StackValue.AutoSize = true;
-            this.L1StackValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.L1StackValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L1StackValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
-            this.L1StackValue.Location = new System.Drawing.Point(183, 243);
-            this.L1StackValue.Name = "L1StackValue";
-            this.L1StackValue.Size = new System.Drawing.Size(174, 83);
-            this.L1StackValue.TabIndex = 4;
-            this.L1StackValue.Text = "L1DefVal";
-            this.L1StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // CurrentNumber
-            // 
-            this.CurrentNumber.AutoSize = true;
-            this.CurrentNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CurrentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.CurrentNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
-            this.CurrentNumber.Location = new System.Drawing.Point(3, 243);
-            this.CurrentNumber.Name = "CurrentNumber";
-            this.CurrentNumber.Size = new System.Drawing.Size(174, 83);
-            this.CurrentNumber.TabIndex = 5;
-            this.CurrentNumber.Text = "default";
-            this.CurrentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // L3StackValue
             // 
             this.L3StackValue.AutoSize = true;
@@ -553,19 +568,6 @@
             this.L3StackValue.Text = "L3DefVal";
             this.L3StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // L4StackValue
-            // 
-            this.L4StackValue.AutoSize = true;
-            this.L4StackValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.L4StackValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.L4StackValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
-            this.L4StackValue.Location = new System.Drawing.Point(183, 0);
-            this.L4StackValue.Name = "L4StackValue";
-            this.L4StackValue.Size = new System.Drawing.Size(174, 81);
-            this.L4StackValue.TabIndex = 7;
-            this.L4StackValue.Text = "L4DefVal";
-            this.L4StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // L2StackValue
             // 
             this.L2StackValue.AutoSize = true;
@@ -578,6 +580,19 @@
             this.L2StackValue.TabIndex = 8;
             this.L2StackValue.Text = "L2DefVal";
             this.L2StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
+            this.StatusLabel.Location = new System.Drawing.Point(3, 81);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(174, 81);
+            this.StatusLabel.TabIndex = 7;
+            this.StatusLabel.Text = "default";
+            this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CalcView
             // 
@@ -640,6 +655,7 @@
         private System.Windows.Forms.Label L4StackValue;
         private System.Windows.Forms.Label L3StackValue;
         private System.Windows.Forms.Label L2StackValue;
+        private System.Windows.Forms.Label StatusLabel;
     }
 }
 

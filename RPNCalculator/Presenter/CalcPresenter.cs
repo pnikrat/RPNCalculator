@@ -23,31 +23,50 @@ namespace RPNCalculator.Presenter
 
         private void StackPush(object sender, EventArgs<String> args)
         {
-            _rpnStack.Push(new Number(args.value));
-            StackDisplay();
+            if (args.value.Length > 0)
+            {
+                _calcView.SetTextStatusLabel("");
+                _rpnStack.Push(new Number(args.value));
+                _calcView.SetTextCurrentNumber("");
+                StackDisplay();
+            }
+        }
+
+        private bool CheckBinaryOperators()
+        {
+            if (_rpnStack.Count < 2)
+            {
+                DisplayOperatorsErrorMessage();
+                return false;
+            }
+            return true;
+        }
+
+        private void DisplayOperatorsErrorMessage()
+        {
+            _calcView.SetTextStatusLabel("Not enough operands for this operation");
         }
 
         private void Addition(object sender, EventArgs args)
         {
-            Number n1 = _rpnStack.Pop();
-            Number n2 = _rpnStack.Pop();
-            _rpnStack.Push(n1 + n2);
-            StackDisplay();
+            if (CheckBinaryOperators())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n1 + n2);
+                StackDisplay();
+            }
         }
 
         private void StackDisplay()
         {
             Number[] stackRepresentation = _rpnStack.ToArray();
-            //stackRepresentation.Reverse<Number>();
-            _calcView.ClearStackValues();
-            if (stackRepresentation.Length >= 1)
-                _calcView.SetTextL1StackValue(stackRepresentation[0].ToString());
-            if (stackRepresentation.Length >= 2)
-                _calcView.SetTextL2StackValue(stackRepresentation[1].ToString());
-            if (stackRepresentation.Length >= 3)
-                _calcView.SetTextL3StackValue(stackRepresentation[2].ToString());
-            if (stackRepresentation.Length >= 4)
-                _calcView.SetTextL4StackValue(stackRepresentation[3].ToString());
+            String[] stackDisplay = { "", "", "", "" };
+            for (int i = 0; i < stackRepresentation.Length; i++)
+            {
+                stackDisplay[i] = stackRepresentation[i].ToString();
+            }
+            _calcView.SetStackValues(stackDisplay);
         }
 
     }

@@ -28,6 +28,7 @@ namespace RPNCalculator
         private void InitializeView()
         {
             SetTextCurrentNumber("");
+            SetTextStatusLabel("");
             ClearStackValues();
         }
 
@@ -41,6 +42,11 @@ namespace RPNCalculator
             CurrentNumber.Text = value;
         }
 
+        public void SetTextStatusLabel(String value)
+        {
+            StatusLabel.Text = value;
+        }
+
         public void ClearStackValues()
         {
             SetTextL1StackValue("");
@@ -49,22 +55,30 @@ namespace RPNCalculator
             SetTextL4StackValue("");
         }
 
-        public void SetTextL1StackValue(String value)
+        public void SetStackValues(String[] values)
+        {
+            SetTextL1StackValue(values[0]);
+            SetTextL2StackValue(values[1]);
+            SetTextL3StackValue(values[2]);
+            SetTextL4StackValue(values[3]);
+        }
+
+        private void SetTextL1StackValue(String value)
         {
             L1StackValue.Text = value;
         }
 
-        public void SetTextL2StackValue(String value)
+        private void SetTextL2StackValue(String value)
         {
             L2StackValue.Text = value;
         }
 
-        public void SetTextL3StackValue(String value)
+        private void SetTextL3StackValue(String value)
         {
             L3StackValue.Text = value;
         }
 
-        public void SetTextL4StackValue(String value)
+        private void SetTextL4StackValue(String value)
         {
             L4StackValue.Text = value;
         }
@@ -159,7 +173,6 @@ namespace RPNCalculator
         private void EnterButton_Click(object sender, EventArgs e)
         {
             OnStackPush(new EventArgs<String>(CurrentNumber.Text));
-            SetTextCurrentNumber("");
         }
 
         private void TwoButton_Click(object sender, EventArgs e)
