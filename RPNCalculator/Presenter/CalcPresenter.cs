@@ -19,6 +19,9 @@ namespace RPNCalculator.Presenter
             _calcView = calcView;
             _calcView.StackPush += this.StackPush;
             _calcView.Addition += this.Addition;
+            _calcView.Subtraction += this.Subtraction;
+            _calcView.Multiplication += this.Multiplication;
+            _calcView.Division += this.Division;
         }
 
         private void StackPush(object sender, EventArgs<String> args)
@@ -42,9 +45,24 @@ namespace RPNCalculator.Presenter
             return true;
         }
 
+        private bool CheckZeroDivision()
+        {
+            if (_rpnStack.Peek().getDoubleValue() == 0.0)
+            {
+                DisplayZeroDivisionErrorMessage();
+                return false;
+            }
+            return true;
+        }
+
         private void DisplayOperatorsErrorMessage()
         {
             _calcView.SetTextStatusLabel("Not enough operands for this operation");
+        }
+
+        private void DisplayZeroDivisionErrorMessage()
+        {
+            _calcView.SetTextStatusLabel("Division by zero forbidden");
         }
 
         private void Addition(object sender, EventArgs args)
@@ -53,7 +71,40 @@ namespace RPNCalculator.Presenter
             {
                 Number n1 = _rpnStack.Pop();
                 Number n2 = _rpnStack.Pop();
-                _rpnStack.Push(n1 + n2);
+                _rpnStack.Push(n2 + n1);
+                StackDisplay();
+            }
+        }
+
+        private void Subtraction(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2 - n1);
+                StackDisplay();
+            }
+        }
+
+        private void Multiplication(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2 * n1);
+                StackDisplay();
+            }
+        }
+
+        private void Division(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators() && CheckZeroDivision())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2 / n1);
                 StackDisplay();
             }
         }

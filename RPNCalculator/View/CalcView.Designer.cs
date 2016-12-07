@@ -364,6 +364,7 @@
             this.MultiplyButton.TabIndex = 6;
             this.MultiplyButton.Text = "×";
             this.MultiplyButton.UseVisualStyleBackColor = true;
+            this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
             // 
             // DivideButton
             // 
@@ -375,6 +376,7 @@
             this.DivideButton.TabIndex = 7;
             this.DivideButton.Text = "/";
             this.DivideButton.UseVisualStyleBackColor = true;
+            this.DivideButton.Click += new System.EventHandler(this.DivideButton_Click);
             // 
             // DaySubtractButton
             // 
@@ -409,6 +411,7 @@
             this.SubtractButton.TabIndex = 10;
             this.SubtractButton.Text = "-";
             this.SubtractButton.UseVisualStyleBackColor = true;
+            this.SubtractButton.Click += new System.EventHandler(this.SubtractButton_Click);
             // 
             // DayAddButton
             // 

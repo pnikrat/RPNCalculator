@@ -30,6 +30,21 @@ namespace RPNCalculator.Model
             return new Number((n1.getDoubleValue() + n2.getDoubleValue()).ToString());
         }
 
+        public static Number operator -(Number n1, Number n2)
+        {
+            return new Number((n1.getDoubleValue() - n2.getDoubleValue()).ToString());
+        }
+
+        public static Number operator *(Number n1, Number n2)
+        {
+            return new Number((n1.getDoubleValue() * n2.getDoubleValue()).ToString());
+        }
+
+        public static Number operator /(Number n1, Number n2)
+        {
+            return new Number((n1.getDoubleValue() / n2.getDoubleValue()).ToString());
+        }
+
         public override string ToString()
         {
             return _value;

@@ -18,5 +18,9 @@ namespace RPNCalculator.View
 
         event EventHandler<EventArgs<String>> StackPush;
         event EventHandler Addition;
+        event EventHandler Subtraction;
+        event EventHandler Multiplication;
+        event EventHandler Division;
+
     }
 }

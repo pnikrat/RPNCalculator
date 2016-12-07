@@ -18,6 +18,9 @@ namespace RPNCalculator
         private String decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
         public event EventHandler<EventArgs<String>> StackPush;
         public event EventHandler Addition;
+        public event EventHandler Subtraction;
+        public event EventHandler Multiplication;
+        public event EventHandler Division;
 
         public CalcView()
         {
@@ -100,6 +103,27 @@ namespace RPNCalculator
                 eventHandler.Invoke(this, null);
         }
 
+        protected virtual void OnSubtraction()
+        {
+            var eventHandler = this.Subtraction;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnMultiplication()
+        {
+            var eventHandler = this.Multiplication;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnDivision()
+        {
+            var eventHandler = this.Division;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.D1 || keyData == Keys.NumPad1)
@@ -160,6 +184,19 @@ namespace RPNCalculator
             {
                 AddButton_Click(this, null);
                 return true;
+            }
+            else if (keyData == Keys.Subtract || keyData == Keys.OemMinus)
+            {
+                SubtractButton_Click(this, null);
+                return true;
+            }
+            else if (keyData == Keys.Multiply || keyData == (Keys.Shift | Keys.D8))
+            {
+                MultiplyButton_Click(this, null);
+            }
+            else if (keyData == Keys.Divide || keyData == Keys.OemQuestion)
+            {
+                DivideButton_Click(this, null);
             }
             
             return base.ProcessCmdKey(ref msg, keyData);
@@ -229,6 +266,21 @@ namespace RPNCalculator
         {
             if (!CurrentNumber.Text.Contains(decimalSeparator) && CurrentNumber.Text.Length > 0)               
                 DisplayCurrentNumber(decimalSeparator);
+        }
+
+        private void SubtractButton_Click(object sender, EventArgs e)
+        {
+            OnSubtraction();
+        }
+
+        private void MultiplyButton_Click(object sender, EventArgs e)
+        {
+            OnMultiplication();
+        }
+
+        private void DivideButton_Click(object sender, EventArgs e)
+        {
+            OnDivision();
         }
     }
 }
