@@ -22,6 +22,9 @@ namespace RPNCalculator.View
         event EventHandler Multiplication;
         event EventHandler Division;
         event EventHandler Drop;
+        event EventHandler Power;
+        event EventHandler SquareRoot;
+        event EventHandler Inversion;
 
     }
 }

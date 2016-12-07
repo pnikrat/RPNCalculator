@@ -22,6 +22,9 @@ namespace RPNCalculator
         public event EventHandler Multiplication;
         public event EventHandler Division;
         public event EventHandler Drop;
+        public event EventHandler Power;
+        public event EventHandler SquareRoot;
+        public event EventHandler Inversion;
 
         public CalcView()
         {
@@ -131,6 +134,27 @@ namespace RPNCalculator
             if (eventHandler != null)
                 eventHandler.Invoke(this, null);
         }
+        
+        protected virtual void OnPower()
+        {
+            var eventHandler = this.Power;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnSquareRoot()
+        {
+            var eventHandler = this.SquareRoot;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnInversion()
+        {
+            var eventHandler = this.Inversion;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -205,6 +229,26 @@ namespace RPNCalculator
             else if (keyData == Keys.Divide || keyData == Keys.OemQuestion)
             {
                 DivideButton_Click(this, null);
+            }
+            else if (keyData == Keys.D || keyData == Keys.Delete)
+            {
+                DropButton_Click(this, null);
+            }
+            else if (keyData == (Keys.Shift | Keys.D6))
+            {
+                PowerButton_Click(this, null);
+            }
+            else if (keyData == Keys.S)
+            {
+                SqrtButton_Click(this, null);
+            }
+            else if (keyData == Keys.I)
+            {
+                InvButton_Click(this, null);
+            }
+            else if (keyData == Keys.N)
+            {
+                PlusMinusButton_Click(this, null);
             }
             
             return base.ProcessCmdKey(ref msg, keyData);
@@ -294,6 +338,37 @@ namespace RPNCalculator
         private void DropButton_Click(object sender, EventArgs e)
         {
             OnDrop();
+        }
+
+        private void PowerButton_Click(object sender, EventArgs e)
+        {
+            OnPower();
+        }
+
+        private void SqrtButton_Click(object sender, EventArgs e)
+        {
+            OnSquareRoot();
+        }
+
+        private void InvButton_Click(object sender, EventArgs e)
+        {
+            OnInversion();
+        }
+
+        private void PlusMinusButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentNumber.Text.Length != 0)
+            {
+                if (CurrentNumber.Text[0] != '-')
+                {
+                    CurrentNumber.Text = "-" + CurrentNumber.Text;
+                }
+                else if (CurrentNumber.Text[0] == '-')
+                {
+                    CurrentNumber.Text = CurrentNumber.Text.TrimStart('-');
+                }
+            }
+
         }
     }
 }

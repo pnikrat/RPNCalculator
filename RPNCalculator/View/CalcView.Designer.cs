@@ -224,6 +224,7 @@
             this.PlusMinusButton.TabIndex = 9;
             this.PlusMinusButton.Text = "+/-";
             this.PlusMinusButton.UseVisualStyleBackColor = true;
+            this.PlusMinusButton.Click += new System.EventHandler(this.PlusMinusButton_Click);
             // 
             // ZeroButton
             // 
@@ -310,6 +311,7 @@
             this.InvButton.TabIndex = 1;
             this.InvButton.Text = "INV";
             this.InvButton.UseVisualStyleBackColor = true;
+            this.InvButton.Click += new System.EventHandler(this.InvButton_Click);
             // 
             // TimeSubtractButton
             // 
@@ -332,6 +334,7 @@
             this.PowerButton.TabIndex = 3;
             this.PowerButton.Text = "^";
             this.PowerButton.UseVisualStyleBackColor = true;
+            this.PowerButton.Click += new System.EventHandler(this.PowerButton_Click);
             // 
             // SqrtButton
             // 
@@ -343,6 +346,7 @@
             this.SqrtButton.TabIndex = 4;
             this.SqrtButton.Text = "SQRT";
             this.SqrtButton.UseVisualStyleBackColor = true;
+            this.SqrtButton.Click += new System.EventHandler(this.SqrtButton_Click);
             // 
             // TimeAddButton
             // 
