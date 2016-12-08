@@ -25,6 +25,9 @@ namespace RPNCalculator
         public event EventHandler Power;
         public event EventHandler SquareRoot;
         public event EventHandler Inversion;
+        public event EventHandler TimeAddition;
+        public event EventHandler TimeSubtraction;
+
 
         public CalcView()
         {
@@ -156,6 +159,20 @@ namespace RPNCalculator
                 eventHandler.Invoke(this, null);
         }
 
+        protected virtual void OnTimeAdd()
+        {
+            var eventHandler = this.TimeAddition;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnTimeSubtract()
+        {
+            var eventHandler = this.TimeSubtraction;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.D1 || keyData == Keys.NumPad1)
@@ -249,6 +266,14 @@ namespace RPNCalculator
             else if (keyData == Keys.N)
             {
                 PlusMinusButton_Click(this, null);
+            }
+            else if (keyData == Keys.T)
+            {
+                TimeAddButton_Click(this, null);
+            }
+            else if (keyData == Keys.Y)
+            {
+                TimeSubtractButton_Click(this, null);
             }
             
             return base.ProcessCmdKey(ref msg, keyData);
@@ -369,6 +394,16 @@ namespace RPNCalculator
                 }
             }
 
+        }
+
+        private void TimeAddButton_Click(object sender, EventArgs e)
+        {
+            OnTimeAdd();
+        }
+
+        private void TimeSubtractButton_Click(object sender, EventArgs e)
+        {
+            OnTimeSubtract();
         }
     }
 }

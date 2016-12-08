@@ -58,6 +58,7 @@
             this.DayAddButton = new System.Windows.Forms.Button();
             this.EnterButton = new System.Windows.Forms.Button();
             this.tableLayoutStatusPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.L4StackValue = new System.Windows.Forms.Label();
             this.CurrentNumber = new System.Windows.Forms.Label();
             this.L1StackValue = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.L3StackLabel = new System.Windows.Forms.Label();
             this.L3StackValue = new System.Windows.Forms.Label();
             this.L2StackValue = new System.Windows.Forms.Label();
-            this.StatusLabel = new System.Windows.Forms.Label();
             this.flowLayoutNumbers.SuspendLayout();
             this.FormTableLayoutPanel1.SuspendLayout();
             this.flowLayoutOperations.SuspendLayout();
@@ -323,6 +323,7 @@
             this.TimeSubtractButton.TabIndex = 2;
             this.TimeSubtractButton.Text = "T-";
             this.TimeSubtractButton.UseVisualStyleBackColor = true;
+            this.TimeSubtractButton.Click += new System.EventHandler(this.TimeSubtractButton_Click);
             // 
             // PowerButton
             // 
@@ -358,6 +359,7 @@
             this.TimeAddButton.TabIndex = 5;
             this.TimeAddButton.Text = "T+";
             this.TimeAddButton.UseVisualStyleBackColor = true;
+            this.TimeAddButton.Click += new System.EventHandler(this.TimeAddButton_Click);
             // 
             // MultiplyButton
             // 
@@ -471,6 +473,19 @@
             this.tableLayoutStatusPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutStatusPanel.Size = new System.Drawing.Size(400, 326);
             this.tableLayoutStatusPanel.TabIndex = 2;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
+            this.StatusLabel.Location = new System.Drawing.Point(3, 81);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(174, 81);
+            this.StatusLabel.TabIndex = 7;
+            this.StatusLabel.Text = "default";
+            this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // L4StackValue
             // 
@@ -588,19 +603,6 @@
             this.L2StackValue.TabIndex = 8;
             this.L2StackValue.Text = "L2DefVal";
             this.L2StackValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.StatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(197)))), ((int)(((byte)(3)))));
-            this.StatusLabel.Location = new System.Drawing.Point(3, 81);
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(174, 81);
-            this.StatusLabel.TabIndex = 7;
-            this.StatusLabel.Text = "default";
-            this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CalcView
             // 

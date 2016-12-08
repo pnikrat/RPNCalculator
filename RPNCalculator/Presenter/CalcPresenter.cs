@@ -26,6 +26,8 @@ namespace RPNCalculator.Presenter
             _calcView.Power += this.Power;
             _calcView.SquareRoot += this.SquareRoot;
             _calcView.Inversion += this.Inversion;
+            _calcView.TimeAddition += this.TimeAddition;
+            _calcView.TimeSubtraction += this.TimeSubtraction;
         }
 
         private void StackPush(object sender, EventArgs<String> args)
@@ -79,6 +81,16 @@ namespace RPNCalculator.Presenter
             return true;
         }
 
+        private bool CheckTimeValues()
+        {
+            if (_rpnStack.Peek().getDoubleValue() < 0.0 || _rpnStack.ElementAt<Number>(1).getDoubleValue() < 0.0)
+            {
+                DisplayNegativeTimeValuesMessage();
+                return false;
+            }
+            return true;
+        }
+
         private void DisplayOperatorsErrorMessage()
         {
             _calcView.SetTextStatusLabel("Not enough operands for this operation");
@@ -92,6 +104,11 @@ namespace RPNCalculator.Presenter
         private void DisplayNegativeRootErrorMessage()
         {
             _calcView.SetTextStatusLabel("Square root of negative number forbidden");
+        }
+
+        private void DisplayNegativeTimeValuesMessage()
+        {
+            _calcView.SetTextStatusLabel("Time cannot be negative");
         }
 
         private void Addition(object sender, EventArgs args)
@@ -175,6 +192,28 @@ namespace RPNCalculator.Presenter
             {
                 Number n1 = _rpnStack.Pop();
                 _rpnStack.Push(~n1);
+                StackDisplay();
+            }
+        }
+
+        private void TimeAddition(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators() && CheckTimeValues())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2.TimeAddition(n1));
+                StackDisplay();
+            }
+        }
+
+        private void TimeSubtraction(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators() && CheckTimeValues())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2.TimeSubtraction(n1));
                 StackDisplay();
             }
         }

@@ -25,6 +25,9 @@ namespace RPNCalculator.View
         event EventHandler Power;
         event EventHandler SquareRoot;
         event EventHandler Inversion;
+        event EventHandler TimeAddition;
+        event EventHandler TimeSubtraction;
+
 
     }
 }
