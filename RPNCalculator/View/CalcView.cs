@@ -15,7 +15,7 @@ namespace RPNCalculator
 {
     public partial class CalcView : Form, ICalcView
     {
-        private String decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+        
         public event EventHandler<EventArgs<String>> StackPush;
         public event EventHandler Addition;
         public event EventHandler Subtraction;
@@ -27,7 +27,9 @@ namespace RPNCalculator
         public event EventHandler Inversion;
         public event EventHandler TimeAddition;
         public event EventHandler TimeSubtraction;
-
+        public event EventHandler DecimalMark;
+        public event EventHandler PlusMinus;
+        
 
         public CalcView()
         {
@@ -42,7 +44,7 @@ namespace RPNCalculator
             ClearStackValues();
         }
 
-        private void DisplayCurrentNumber(String value)
+        public void DisplayCurrentNumber(String value)
         {
             CurrentNumber.Text += value;
         }
@@ -50,6 +52,11 @@ namespace RPNCalculator
         public void SetTextCurrentNumber(String value)
         {
             CurrentNumber.Text = value;
+        }
+
+        public String GetTextCurrentNumber()
+        {
+            return CurrentNumber.Text;
         }
 
         public void SetTextStatusLabel(String value)
@@ -93,8 +100,6 @@ namespace RPNCalculator
             L4StackValue.Text = value;
         }
 
-        //public CalcPresenter _presenter    
-        //{ private get; set; }
 
         protected virtual void OnStackPush(EventArgs<String> args)
         {
@@ -169,6 +174,20 @@ namespace RPNCalculator
         protected virtual void OnTimeSubtract()
         {
             var eventHandler = this.TimeSubtraction;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnDecimalMark()
+        {
+            var eventHandler = this.DecimalMark;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnPlusMinus()
+        {
+            var eventHandler = this.PlusMinus;
             if (eventHandler != null)
                 eventHandler.Invoke(this, null);
         }
@@ -275,6 +294,10 @@ namespace RPNCalculator
             {
                 TimeSubtractButton_Click(this, null);
             }
+            else if (keyData == Keys.Back)
+            {
+
+            }
             
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -341,8 +364,7 @@ namespace RPNCalculator
 
         private void DecimalMarkButton_Click(object sender, EventArgs e)
         {
-            if (!CurrentNumber.Text.Contains(decimalSeparator) && CurrentNumber.Text.Length > 0)               
-                DisplayCurrentNumber(decimalSeparator);
+            OnDecimalMark();
         }
 
         private void SubtractButton_Click(object sender, EventArgs e)
@@ -382,18 +404,7 @@ namespace RPNCalculator
 
         private void PlusMinusButton_Click(object sender, EventArgs e)
         {
-            if (CurrentNumber.Text.Length != 0)
-            {
-                if (CurrentNumber.Text[0] != '-')
-                {
-                    CurrentNumber.Text = "-" + CurrentNumber.Text;
-                }
-                else if (CurrentNumber.Text[0] == '-')
-                {
-                    CurrentNumber.Text = CurrentNumber.Text.TrimStart('-');
-                }
-            }
-
+            OnPlusMinus();
         }
 
         private void TimeAddButton_Click(object sender, EventArgs e)

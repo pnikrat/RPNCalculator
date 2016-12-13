@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RPNCalculator.Model;
 using RPNCalculator.View;
+using System.Threading;
 
 namespace RPNCalculator.Presenter
 {
@@ -12,7 +13,7 @@ namespace RPNCalculator.Presenter
     {
         private Stack<Number> _rpnStack = new Stack<Number>();
         private readonly ICalcView _calcView;
-
+        private String decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
         public CalcPresenter(ICalcView calcView)
         {
@@ -28,6 +29,8 @@ namespace RPNCalculator.Presenter
             _calcView.Inversion += this.Inversion;
             _calcView.TimeAddition += this.TimeAddition;
             _calcView.TimeSubtraction += this.TimeSubtraction;
+            _calcView.DecimalMark += this.DecimalMark;
+            _calcView.PlusMinus += this.PlusMinus;
         }
 
         private void StackPush(object sender, EventArgs<String> args)
@@ -215,6 +218,27 @@ namespace RPNCalculator.Presenter
                 Number n2 = _rpnStack.Pop();
                 _rpnStack.Push(n2.TimeSubtraction(n1));
                 StackDisplay();
+            }
+        }
+
+        private void DecimalMark(object sender, EventArgs args)
+        {
+            if (!_calcView.GetTextCurrentNumber().Contains(decimalSeparator) && _calcView.GetTextCurrentNumber().Length > 0)
+                _calcView.DisplayCurrentNumber(decimalSeparator);
+        }
+
+        private void PlusMinus(object sender, EventArgs args)
+        {
+            if (_calcView.GetTextCurrentNumber().Length != 0)
+            {
+                if (_calcView.GetTextCurrentNumber()[0] != '-')
+                {
+                    _calcView.SetTextCurrentNumber("-" + _calcView.GetTextCurrentNumber());
+                }
+                else if (_calcView.GetTextCurrentNumber()[0] == '-')
+                {
+                    _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().TrimStart('-'));
+                }
             }
         }
 

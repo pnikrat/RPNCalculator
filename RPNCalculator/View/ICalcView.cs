@@ -9,12 +9,12 @@ namespace RPNCalculator.View
 {
     public interface ICalcView
     {
+        void DisplayCurrentNumber(String value);
         void SetTextCurrentNumber(String value);
+        String GetTextCurrentNumber();
         void SetTextStatusLabel(String value);
         void ClearStackValues();
         void SetStackValues(String[] values);
-        //CalcPresenter _presenter
-        //{ set; }
 
         event EventHandler<EventArgs<String>> StackPush;
         event EventHandler Addition;
@@ -27,7 +27,8 @@ namespace RPNCalculator.View
         event EventHandler Inversion;
         event EventHandler TimeAddition;
         event EventHandler TimeSubtraction;
-
+        event EventHandler DecimalMark;
+        event EventHandler PlusMinus;
 
     }
 }
