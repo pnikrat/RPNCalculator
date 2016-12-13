@@ -395,6 +395,7 @@
             this.DaySubtractButton.TabIndex = 8;
             this.DaySubtractButton.Text = "D-";
             this.DaySubtractButton.UseVisualStyleBackColor = true;
+            this.DaySubtractButton.Click += new System.EventHandler(this.DaySubtractButton_Click);
             // 
             // AddButton
             // 
@@ -430,6 +431,7 @@
             this.DayAddButton.TabIndex = 11;
             this.DayAddButton.Text = "D+";
             this.DayAddButton.UseVisualStyleBackColor = true;
+            this.DayAddButton.Click += new System.EventHandler(this.DayAddButton_Click);
             // 
             // EnterButton
             // 

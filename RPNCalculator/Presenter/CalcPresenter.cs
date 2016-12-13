@@ -7,6 +7,7 @@ using RPNCalculator.Model;
 using RPNCalculator.View;
 using System.Threading;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace RPNCalculator.Presenter
 {
@@ -39,6 +40,8 @@ namespace RPNCalculator.Presenter
             _calcView.DecimalMark += this.DecimalMark;
             _calcView.PlusMinus += this.PlusMinus;
             _calcView.Correction += this.Correction;
+            _calcView.DateAddition += this.DateAddition;
+            _calcView.DateSubtraction += this.DateSubtraction;
         }
 
         private void NumberInsert(object sender, EventArgs<String> args)
@@ -86,13 +89,10 @@ namespace RPNCalculator.Presenter
 
         private void StackPush(object sender, EventArgs<String> args)
         {
-            if (args.value.Length > 0)
-            {
-                _calcView.SetTextStatusLabel("");
-                _rpnStack.Push(new Number(args.value));
-                _calcView.SetTextCurrentNumber("0");
-                StackDisplay();
-            }
+            _calcView.SetTextStatusLabel("");
+            _rpnStack.Push(new Number(args.value));
+            _calcView.SetTextCurrentNumber("0");
+            StackDisplay();
         }
 
         private bool CheckUnaryOperators()
@@ -145,6 +145,33 @@ namespace RPNCalculator.Presenter
             return true;
         }
 
+        private bool CheckDateValuesForAddition()
+        {
+            String numOfDays = _rpnStack.Peek().ToString();
+            if (!numOfDays.Contains(decimalSeparator) && _rpnStack.ElementAt<Number>(1).CheckDateFormat())
+            {
+                return true;
+            }
+            else
+            {
+                DisplayWrongDateValuesMessage();
+                return false;
+            }
+        }
+
+        private bool CheckDateValuesForSubtraction()
+        {
+            if (_rpnStack.Peek().CheckDateFormat() && _rpnStack.ElementAt<Number>(1).CheckDateFormat())
+            {
+                return true;
+            }
+            else
+            {
+                DisplayWrongDateValuesMessage();
+                return false;
+            }
+        }
+
         private void DisplayOperatorsErrorMessage()
         {
             _calcView.SetTextStatusLabel("Not enough operands for this operation");
@@ -163,6 +190,11 @@ namespace RPNCalculator.Presenter
         private void DisplayNegativeTimeValuesMessage()
         {
             _calcView.SetTextStatusLabel("Time cannot be negative");
+        }
+
+        private void DisplayWrongDateValuesMessage()
+        {
+            _calcView.SetTextStatusLabel("Operand does not match dd.MMyyyy format");
         }
 
         private void Addition(object sender, EventArgs args)
@@ -300,6 +332,28 @@ namespace RPNCalculator.Presenter
                     return;
                 }
                 _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().Remove(_calcView.GetTextCurrentNumber().Length - 1));
+        }
+
+        private void DateAddition(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators() && CheckDateValuesForAddition())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2.DateAddition(n1));
+                StackDisplay();
+            }
+        }
+
+        private void DateSubtraction(object sender, EventArgs args)
+        {
+            if (CheckBinaryOperators() && CheckDateValuesForSubtraction())
+            {
+                Number n1 = _rpnStack.Pop();
+                Number n2 = _rpnStack.Pop();
+                _rpnStack.Push(n2.DateSubtraction(n1));
+                StackDisplay();
+            }
         }
 
         private void StackDisplay()

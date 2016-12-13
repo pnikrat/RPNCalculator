@@ -30,6 +30,8 @@ namespace RPNCalculator
         public event EventHandler DecimalMark;
         public event EventHandler PlusMinus;
         public event EventHandler Correction;
+        public event EventHandler DateAddition;
+        public event EventHandler DateSubtraction;
 
         public CalcView()
         {
@@ -205,6 +207,20 @@ namespace RPNCalculator
                 eventHandler.Invoke(this, null);
         }
 
+        protected virtual void OnDateAdd()
+        {
+            var eventHandler = this.DateAddition;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
+        protected virtual void OnDateSubtract()
+        {
+            var eventHandler = this.DateSubtraction;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.D1 || keyData == Keys.NumPad1)
@@ -235,26 +251,32 @@ namespace RPNCalculator
             else if (keyData == Keys.D5 || keyData == Keys.NumPad5)
             {
                 FiveButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.D6 || keyData == Keys.NumPad6)
             {
                 SixButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.D7 || keyData == Keys.NumPad7)
             {
                 SevenButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.D8 || keyData == Keys.NumPad8)
             {
                 EightButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.D9 || keyData == Keys.NumPad9)
             {
                 NineButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.OemPeriod || keyData == Keys.Decimal)
             {
                 DecimalMarkButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.Enter)
             {
@@ -274,42 +296,62 @@ namespace RPNCalculator
             else if (keyData == Keys.Multiply || keyData == (Keys.Shift | Keys.D8))
             {
                 MultiplyButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.Divide || keyData == Keys.OemQuestion)
             {
                 DivideButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.D || keyData == Keys.Delete)
             {
                 DropButton_Click(this, null);
+                return true;
             }
             else if (keyData == (Keys.Shift | Keys.D6))
             {
                 PowerButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.S)
             {
                 SqrtButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.I)
             {
                 InvButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.N)
             {
                 PlusMinusButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.T)
             {
                 TimeAddButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.Y)
             {
                 TimeSubtractButton_Click(this, null);
+                return true;
             }
             else if (keyData == Keys.Back)
             {
                 OnCorrection();
+                return true;
+            }
+            else if (keyData == Keys.G)
+            {
+                DayAddButton_Click(this, null);
+                return true;
+            }
+            else if (keyData == Keys.H)
+            {
+                DaySubtractButton_Click(this, null);
+                return true;
             }
             
             return base.ProcessCmdKey(ref msg, keyData);
@@ -428,6 +470,16 @@ namespace RPNCalculator
         private void TimeSubtractButton_Click(object sender, EventArgs e)
         {
             OnTimeSubtract();
+        }
+
+        private void DayAddButton_Click(object sender, EventArgs e)
+        {
+            OnDateAdd();
+        }
+
+        private void DaySubtractButton_Click(object sender, EventArgs e)
+        {
+            OnDateSubtract();
         }
     }
 }

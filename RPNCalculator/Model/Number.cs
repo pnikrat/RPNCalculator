@@ -16,7 +16,7 @@ namespace RPNCalculator.Model
 
         public Number(String value)
         {
-            //packing and unpacking to eliminate leading zeroes.
+            //boxing i unboxing aby zapobiec wartościom typu "12," na stosie
             _value = Double.Parse(value).ToString();
         }
 
@@ -96,6 +96,35 @@ namespace RPNCalculator.Model
             Number[] numTab = { this, otherNumber };
             Double[] seconds = ToSeconds(numTab);
             return SecondsToNumber(seconds[0] - seconds[1]);
+        }
+
+        public bool CheckDateFormat()
+        {
+            String pattern = "d" + decimalSeparator + "MMyyyy";
+            DateTime parsedDate;
+            return DateTime.TryParseExact(_value, pattern, null, DateTimeStyles.None, out parsedDate);
+        }
+
+        public DateTime GetDateFromCustomFormat()
+        {
+            String pattern = "d" + decimalSeparator + "MMyyyy";
+            DateTime parsedDate;
+            DateTime.TryParseExact(_value, pattern, null, DateTimeStyles.None, out parsedDate);
+            return parsedDate;
+        }
+
+        public Number DateAddition(Number otherNumber)
+        {
+            DateTime d2 = this.GetDateFromCustomFormat();
+            DateTime result = DateTime.FromOADate(d2.ToOADate() + otherNumber.getDoubleValue());
+            return new Number(result.ToString("d" + decimalSeparator + "MMyyyy"));
+        }
+
+        public Number DateSubtraction(Number otherNumber)
+        {
+            DateTime d2 = this.GetDateFromCustomFormat();
+            DateTime d1 = otherNumber.GetDateFromCustomFormat();
+            return new Number((d2.ToOADate() - d1.ToOADate()).ToString());
         }
 
         public override string ToString()

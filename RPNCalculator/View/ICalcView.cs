@@ -31,6 +31,8 @@ namespace RPNCalculator.View
         event EventHandler DecimalMark;
         event EventHandler PlusMinus;
         event EventHandler Correction;
+        event EventHandler DateAddition;
+        event EventHandler DateSubtraction;
 
     }
 }
