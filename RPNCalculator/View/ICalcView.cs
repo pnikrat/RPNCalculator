@@ -16,6 +16,7 @@ namespace RPNCalculator.View
         void ClearStackValues();
         void SetStackValues(String[] values);
 
+        event EventHandler<EventArgs<String>> NumberInsert;
         event EventHandler<EventArgs<String>> StackPush;
         event EventHandler Addition;
         event EventHandler Subtraction;

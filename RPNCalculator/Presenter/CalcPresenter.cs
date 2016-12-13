@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RPNCalculator.Model;
 using RPNCalculator.View;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace RPNCalculator.Presenter
 {
@@ -23,6 +24,7 @@ namespace RPNCalculator.Presenter
 
         private void SubscribeToViewEvents()
         {
+            _calcView.NumberInsert += this.NumberInsert;
             _calcView.StackPush += this.StackPush;
             _calcView.Addition += this.Addition;
             _calcView.Subtraction += this.Subtraction;
@@ -39,13 +41,56 @@ namespace RPNCalculator.Presenter
             _calcView.Correction += this.Correction;
         }
 
+        private void NumberInsert(object sender, EventArgs<String> args)
+        {
+            String tempString = args.value;
+
+            //próba wstawienia zera za zerem -> usuń dodatkowe zero. Gdy liczba dziesiętna nie usuwaj
+            if (!_calcView.GetTextCurrentNumber().Contains(decimalSeparator) && _calcView.GetTextCurrentNumber()[0] == '0')
+                _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().Remove(_calcView.GetTextCurrentNumber().Length - 1));
+
+            switch (tempString)
+            {
+                case "1":
+                    _calcView.DisplayCurrentNumber("1");
+                    break;
+                case "2":
+                    _calcView.DisplayCurrentNumber("2");
+                    break;
+                case "3":
+                    _calcView.DisplayCurrentNumber("3");
+                    break;
+                case "4":
+                    _calcView.DisplayCurrentNumber("4");
+                    break;
+                case "5":
+                    _calcView.DisplayCurrentNumber("5");
+                    break;
+                case "6":
+                    _calcView.DisplayCurrentNumber("6");
+                    break;
+                case "7":
+                    _calcView.DisplayCurrentNumber("7");
+                    break;
+                case "8":
+                    _calcView.DisplayCurrentNumber("8");
+                    break;
+                case "9":
+                    _calcView.DisplayCurrentNumber("9");
+                    break;
+                case "0":
+                    _calcView.DisplayCurrentNumber("0");
+                    break;
+            }
+        }
+
         private void StackPush(object sender, EventArgs<String> args)
         {
             if (args.value.Length > 0)
             {
                 _calcView.SetTextStatusLabel("");
                 _rpnStack.Push(new Number(args.value));
-                _calcView.SetTextCurrentNumber("");
+                _calcView.SetTextCurrentNumber("0");
                 StackDisplay();
             }
         }
@@ -229,31 +274,32 @@ namespace RPNCalculator.Presenter
 
         private void DecimalMark(object sender, EventArgs args)
         {
-            if (!_calcView.GetTextCurrentNumber().Contains(decimalSeparator) && _calcView.GetTextCurrentNumber().Length > 0)
+            if (!_calcView.GetTextCurrentNumber().Contains(decimalSeparator))
                 _calcView.DisplayCurrentNumber(decimalSeparator);
         }
 
         private void PlusMinus(object sender, EventArgs args)
         {
-            if (_calcView.GetTextCurrentNumber().Length != 0)
+            if (_calcView.GetTextCurrentNumber()[0] == '0')
+                return;
+            if (_calcView.GetTextCurrentNumber()[0] != '-')
             {
-                if (_calcView.GetTextCurrentNumber()[0] != '-')
-                {
-                    _calcView.SetTextCurrentNumber("-" + _calcView.GetTextCurrentNumber());
-                }
-                else if (_calcView.GetTextCurrentNumber()[0] == '-')
-                {
-                    _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().TrimStart('-'));
-                }
+                _calcView.SetTextCurrentNumber("-" + _calcView.GetTextCurrentNumber());
+            }
+            else if (_calcView.GetTextCurrentNumber()[0] == '-')
+            {
+                _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().TrimStart('-'));
             }
         }
 
         private void Correction(object sender, EventArgs args)
         {
-            if (_calcView.GetTextCurrentNumber().Length != 0)
-            {
+                if (_calcView.GetTextCurrentNumber().Length == 1)
+                {
+                    _calcView.SetTextCurrentNumber("0");
+                    return;
+                }
                 _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().Remove(_calcView.GetTextCurrentNumber().Length - 1));
-            }
         }
 
         private void StackDisplay()

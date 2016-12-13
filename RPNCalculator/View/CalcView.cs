@@ -15,7 +15,7 @@ namespace RPNCalculator
 {
     public partial class CalcView : Form, ICalcView
     {
-        
+        public event EventHandler<EventArgs<String>> NumberInsert;
         public event EventHandler<EventArgs<String>> StackPush;
         public event EventHandler Addition;
         public event EventHandler Subtraction;
@@ -39,7 +39,7 @@ namespace RPNCalculator
 
         private void InitializeView()
         {
-            SetTextCurrentNumber("");
+            SetTextCurrentNumber("0");
             SetTextStatusLabel("");
             ClearStackValues();
         }
@@ -100,6 +100,12 @@ namespace RPNCalculator
             L4StackValue.Text = value;
         }
 
+        protected virtual void OnNumberInsert(EventArgs<String> args)
+        {
+            var eventHandler = this.NumberInsert;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, args);
+        }
 
         protected virtual void OnStackPush(EventArgs<String> args)
         {
@@ -311,7 +317,7 @@ namespace RPNCalculator
 
         private void OneButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("1");
+            OnNumberInsert(new EventArgs<String>("1"));
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
@@ -321,7 +327,7 @@ namespace RPNCalculator
 
         private void TwoButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("2");
+            OnNumberInsert(new EventArgs<String>("2"));
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -331,42 +337,42 @@ namespace RPNCalculator
 
         private void ZeroButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("0");
+            OnNumberInsert(new EventArgs<String>("0"));
         }
 
         private void ThreeButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("3");
+            OnNumberInsert(new EventArgs<String>("3"));
         }
 
         private void FourButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("4");
+            OnNumberInsert(new EventArgs<String>("4"));
         }
 
         private void FiveButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("5");
+            OnNumberInsert(new EventArgs<String>("5"));
         }
 
         private void SixButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("6");
+            OnNumberInsert(new EventArgs<String>("6"));
         }
 
         private void SevenButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("7");
+            OnNumberInsert(new EventArgs<String>("7"));
         }
 
         private void EightButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("8");
+            OnNumberInsert(new EventArgs<String>("8"));
         }
 
         private void NineButton_Click(object sender, EventArgs e)
         {
-            DisplayCurrentNumber("9");
+            OnNumberInsert(new EventArgs<String>("9"));
         }
 
         private void DecimalMarkButton_Click(object sender, EventArgs e)
