@@ -273,7 +273,7 @@ namespace RPNCalculator
                 NineButton_Click(this, null);
                 return true;
             }
-            else if (keyData == Keys.OemPeriod || keyData == Keys.Decimal)
+            else if (keyData == Keys.OemPeriod || keyData == Keys.Decimal || keyData == Keys.Oemcomma)
             {
                 DecimalMarkButton_Click(this, null);
                 return true;

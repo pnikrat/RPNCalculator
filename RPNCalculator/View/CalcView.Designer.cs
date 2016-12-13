@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.flowLayoutNumbers = new System.Windows.Forms.FlowLayoutPanel();
             this.SeparatorLabel = new System.Windows.Forms.Label();
             this.SevenButton = new System.Windows.Forms.Button();
@@ -68,6 +69,7 @@
             this.L3StackLabel = new System.Windows.Forms.Label();
             this.L3StackValue = new System.Windows.Forms.Label();
             this.L2StackValue = new System.Windows.Forms.Label();
+            this.KeyHint = new System.Windows.Forms.ToolTip(this.components);
             this.flowLayoutNumbers.SuspendLayout();
             this.FormTableLayoutPanel1.SuspendLayout();
             this.flowLayoutOperations.SuspendLayout();
@@ -103,7 +105,7 @@
             this.SeparatorLabel.Location = new System.Drawing.Point(7, 7);
             this.SeparatorLabel.Margin = new System.Windows.Forms.Padding(7);
             this.SeparatorLabel.Name = "SeparatorLabel";
-            this.SeparatorLabel.Size = new System.Drawing.Size(182, 50);
+            this.SeparatorLabel.Size = new System.Drawing.Size(167, 50);
             this.SeparatorLabel.TabIndex = 12;
             // 
             // SevenButton
@@ -223,6 +225,7 @@
             this.PlusMinusButton.Size = new System.Drawing.Size(50, 50);
             this.PlusMinusButton.TabIndex = 9;
             this.PlusMinusButton.Text = "+/-";
+            this.KeyHint.SetToolTip(this.PlusMinusButton, "N");
             this.PlusMinusButton.UseVisualStyleBackColor = true;
             this.PlusMinusButton.Click += new System.EventHandler(this.PlusMinusButton_Click);
             // 
@@ -247,6 +250,7 @@
             this.DecimalMarkButton.Size = new System.Drawing.Size(50, 50);
             this.DecimalMarkButton.TabIndex = 11;
             this.DecimalMarkButton.Text = "•";
+            this.KeyHint.SetToolTip(this.DecimalMarkButton, ", or .");
             this.DecimalMarkButton.UseVisualStyleBackColor = true;
             this.DecimalMarkButton.Click += new System.EventHandler(this.DecimalMarkButton_Click);
             // 
@@ -298,6 +302,7 @@
             this.DropButton.Size = new System.Drawing.Size(50, 50);
             this.DropButton.TabIndex = 0;
             this.DropButton.Text = "DROP";
+            this.KeyHint.SetToolTip(this.DropButton, "D or Delete");
             this.DropButton.UseVisualStyleBackColor = true;
             this.DropButton.Click += new System.EventHandler(this.DropButton_Click);
             // 
@@ -310,6 +315,7 @@
             this.InvButton.Size = new System.Drawing.Size(50, 50);
             this.InvButton.TabIndex = 1;
             this.InvButton.Text = "INV";
+            this.KeyHint.SetToolTip(this.InvButton, "I");
             this.InvButton.UseVisualStyleBackColor = true;
             this.InvButton.Click += new System.EventHandler(this.InvButton_Click);
             // 
@@ -322,6 +328,7 @@
             this.TimeSubtractButton.Size = new System.Drawing.Size(50, 50);
             this.TimeSubtractButton.TabIndex = 2;
             this.TimeSubtractButton.Text = "T-";
+            this.KeyHint.SetToolTip(this.TimeSubtractButton, "Y");
             this.TimeSubtractButton.UseVisualStyleBackColor = true;
             this.TimeSubtractButton.Click += new System.EventHandler(this.TimeSubtractButton_Click);
             // 
@@ -334,6 +341,7 @@
             this.PowerButton.Size = new System.Drawing.Size(50, 50);
             this.PowerButton.TabIndex = 3;
             this.PowerButton.Text = "^";
+            this.KeyHint.SetToolTip(this.PowerButton, "Shift+6");
             this.PowerButton.UseVisualStyleBackColor = true;
             this.PowerButton.Click += new System.EventHandler(this.PowerButton_Click);
             // 
@@ -346,6 +354,7 @@
             this.SqrtButton.Size = new System.Drawing.Size(50, 50);
             this.SqrtButton.TabIndex = 4;
             this.SqrtButton.Text = "SQRT";
+            this.KeyHint.SetToolTip(this.SqrtButton, "S");
             this.SqrtButton.UseVisualStyleBackColor = true;
             this.SqrtButton.Click += new System.EventHandler(this.SqrtButton_Click);
             // 
@@ -358,6 +367,7 @@
             this.TimeAddButton.Size = new System.Drawing.Size(50, 50);
             this.TimeAddButton.TabIndex = 5;
             this.TimeAddButton.Text = "T+";
+            this.KeyHint.SetToolTip(this.TimeAddButton, "T");
             this.TimeAddButton.UseVisualStyleBackColor = true;
             this.TimeAddButton.Click += new System.EventHandler(this.TimeAddButton_Click);
             // 
@@ -370,6 +380,7 @@
             this.MultiplyButton.Size = new System.Drawing.Size(50, 50);
             this.MultiplyButton.TabIndex = 6;
             this.MultiplyButton.Text = "×";
+            this.KeyHint.SetToolTip(this.MultiplyButton, "Shift+8");
             this.MultiplyButton.UseVisualStyleBackColor = true;
             this.MultiplyButton.Click += new System.EventHandler(this.MultiplyButton_Click);
             // 
@@ -382,6 +393,7 @@
             this.DivideButton.Size = new System.Drawing.Size(50, 50);
             this.DivideButton.TabIndex = 7;
             this.DivideButton.Text = "/";
+            this.KeyHint.SetToolTip(this.DivideButton, "/");
             this.DivideButton.UseVisualStyleBackColor = true;
             this.DivideButton.Click += new System.EventHandler(this.DivideButton_Click);
             // 
@@ -394,6 +406,7 @@
             this.DaySubtractButton.Size = new System.Drawing.Size(50, 50);
             this.DaySubtractButton.TabIndex = 8;
             this.DaySubtractButton.Text = "D-";
+            this.KeyHint.SetToolTip(this.DaySubtractButton, "H");
             this.DaySubtractButton.UseVisualStyleBackColor = true;
             this.DaySubtractButton.Click += new System.EventHandler(this.DaySubtractButton_Click);
             // 
@@ -406,6 +419,7 @@
             this.AddButton.Size = new System.Drawing.Size(50, 50);
             this.AddButton.TabIndex = 9;
             this.AddButton.Text = "+";
+            this.KeyHint.SetToolTip(this.AddButton, "+");
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
@@ -418,6 +432,7 @@
             this.SubtractButton.Size = new System.Drawing.Size(50, 50);
             this.SubtractButton.TabIndex = 10;
             this.SubtractButton.Text = "-";
+            this.KeyHint.SetToolTip(this.SubtractButton, "-");
             this.SubtractButton.UseVisualStyleBackColor = true;
             this.SubtractButton.Click += new System.EventHandler(this.SubtractButton_Click);
             // 
@@ -430,6 +445,7 @@
             this.DayAddButton.Size = new System.Drawing.Size(50, 50);
             this.DayAddButton.TabIndex = 11;
             this.DayAddButton.Text = "D+";
+            this.KeyHint.SetToolTip(this.DayAddButton, "G");
             this.DayAddButton.UseVisualStyleBackColor = true;
             this.DayAddButton.Click += new System.EventHandler(this.DayAddButton_Click);
             // 
@@ -668,6 +684,7 @@
         private System.Windows.Forms.Label L3StackValue;
         private System.Windows.Forms.Label L2StackValue;
         private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.ToolTip KeyHint;
     }
 }
 
