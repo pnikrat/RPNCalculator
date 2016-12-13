@@ -29,7 +29,7 @@ namespace RPNCalculator
         public event EventHandler TimeSubtraction;
         public event EventHandler DecimalMark;
         public event EventHandler PlusMinus;
-        
+        public event EventHandler Correction;
 
         public CalcView()
         {
@@ -192,6 +192,13 @@ namespace RPNCalculator
                 eventHandler.Invoke(this, null);
         }
 
+        protected virtual void OnCorrection()
+        {
+            var eventHandler = this.Correction;
+            if (eventHandler != null)
+                eventHandler.Invoke(this, null);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.D1 || keyData == Keys.NumPad1)
@@ -296,7 +303,7 @@ namespace RPNCalculator
             }
             else if (keyData == Keys.Back)
             {
-
+                OnCorrection();
             }
             
             return base.ProcessCmdKey(ref msg, keyData);

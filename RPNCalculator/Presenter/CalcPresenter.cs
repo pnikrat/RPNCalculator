@@ -18,6 +18,11 @@ namespace RPNCalculator.Presenter
         public CalcPresenter(ICalcView calcView)
         {
             _calcView = calcView;
+            SubscribeToViewEvents();
+        }
+
+        private void SubscribeToViewEvents()
+        {
             _calcView.StackPush += this.StackPush;
             _calcView.Addition += this.Addition;
             _calcView.Subtraction += this.Subtraction;
@@ -31,6 +36,7 @@ namespace RPNCalculator.Presenter
             _calcView.TimeSubtraction += this.TimeSubtraction;
             _calcView.DecimalMark += this.DecimalMark;
             _calcView.PlusMinus += this.PlusMinus;
+            _calcView.Correction += this.Correction;
         }
 
         private void StackPush(object sender, EventArgs<String> args)
@@ -239,6 +245,14 @@ namespace RPNCalculator.Presenter
                 {
                     _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().TrimStart('-'));
                 }
+            }
+        }
+
+        private void Correction(object sender, EventArgs args)
+        {
+            if (_calcView.GetTextCurrentNumber().Length != 0)
+            {
+                _calcView.SetTextCurrentNumber(_calcView.GetTextCurrentNumber().Remove(_calcView.GetTextCurrentNumber().Length - 1));
             }
         }
 

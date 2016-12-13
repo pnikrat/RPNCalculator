@@ -29,6 +29,7 @@ namespace RPNCalculator.View
         event EventHandler TimeSubtraction;
         event EventHandler DecimalMark;
         event EventHandler PlusMinus;
+        event EventHandler Correction;
 
     }
 }
