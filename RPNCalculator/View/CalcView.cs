@@ -102,6 +102,9 @@ namespace RPNCalculator
             L4StackValue.Text = value;
         }
 
+        /*
+         * Metody wywołujące zdarzenia odnoszące się do poszczególnych akcji użytkownika na widoku
+         */
         protected virtual void OnNumberInsert(EventArgs<String> args)
         {
             var eventHandler = this.NumberInsert;
@@ -221,6 +224,10 @@ namespace RPNCalculator
                 eventHandler.Invoke(this, null);
         }
 
+        /*
+         * Metoda umożliwiająca wywołanie poszczególnych metod "wciskających przycisk" interfejsu 
+         * w zależności od wciśniętego przez użytkownika klawisza na klawiaturze
+         */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.D1 || keyData == Keys.NumPad1)
@@ -357,6 +364,10 @@ namespace RPNCalculator
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        /*
+         * Metody WinForms wywoływane po wciśnięciu odpowiedniego elementu interfejsu
+         * Każda z nich wywołuje osobną metodę odpowiedzialną za 'Invoke' zdarzenia przekazywanego później do prezentera
+         */
         private void OneButton_Click(object sender, EventArgs e)
         {
             OnNumberInsert(new EventArgs<String>("1"));

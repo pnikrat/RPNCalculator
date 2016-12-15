@@ -44,6 +44,9 @@ namespace RPNCalculator.Presenter
             _calcView.DateSubtraction += this.DateSubtraction;
         }
 
+        /*
+         * Obsługa zdarzenia wciśnięcia przez użytkownika cyfry
+         */
         private void NumberInsert(object sender, EventArgs<String> args)
         {
             String tempString = args.value;
@@ -87,6 +90,9 @@ namespace RPNCalculator.Presenter
             }
         }
 
+        /*
+         * Obsługa zdarzenia wrzucenia liczby na stos (ENTER)
+         */
         private void StackPush(object sender, EventArgs<String> args)
         {
             _calcView.SetTextStatusLabel("");
@@ -135,6 +141,9 @@ namespace RPNCalculator.Presenter
             return true;
         }
 
+        /*
+         * Sprawdza, czy obie wartości czasu są dodatnie
+         */
         private bool CheckTimeValues()
         {
             if (_rpnStack.Peek().getDoubleValue() < 0.0 || _rpnStack.ElementAt<Number>(1).getDoubleValue() < 0.0)
@@ -145,6 +154,10 @@ namespace RPNCalculator.Presenter
             return true;
         }
 
+        /*
+         * Sprawdza, czy drugim elementem stosu jest string dd.MMyyyy,
+         * a pierwszym elementem stosu liczba całkowita (liczba dni)
+         */
         private bool CheckDateValuesForAddition()
         {
             String numOfDays = _rpnStack.Peek().ToString();
@@ -159,9 +172,15 @@ namespace RPNCalculator.Presenter
             }
         }
 
+        /*
+         * Sprawdza, czy dwa pierwsze elementy stosu są stringami dd.MMyyyy
+         * LUB
+         * czy drugi element stosu jest stringiem dd.MMyyyy, a pierwszy element liczbą całkowitą (liczba dni)
+         */
         private bool CheckDateValuesForSubtraction()
         {
-            if (_rpnStack.Peek().CheckDateFormat() && _rpnStack.ElementAt<Number>(1).CheckDateFormat())
+            if ((_rpnStack.Peek().CheckDateFormat() && _rpnStack.ElementAt<Number>(1).CheckDateFormat())
+                || (!_rpnStack.Peek().ToString().Contains(decimalSeparator) && _rpnStack.ElementAt<Number>(1).CheckDateFormat()))
             {
                 return true;
             }
@@ -197,6 +216,9 @@ namespace RPNCalculator.Presenter
             _calcView.SetTextStatusLabel("Operand does not match dd.MMyyyy format");
         }
 
+        /*
+         * Obsługi zdarzeń poszczególnych operacji
+         */
         private void Addition(object sender, EventArgs args)
         {
             if (CheckBinaryOperators())
@@ -356,6 +378,9 @@ namespace RPNCalculator.Presenter
             }
         }
 
+        /*
+         * Metoda wyświetla pierwsze cztery elementy stosu na poszczególnych czterech Label'ach widoku
+         */
         private void StackDisplay()
         {
             Number[] stackRepresentation = _rpnStack.ToArray();
